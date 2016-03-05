@@ -5,6 +5,8 @@ powerData <- read.table("./household_power_consumption.txt", header = FALSE, nro
                         colClasses = c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric"), 
                         col.names = c("date", "time", "global_active_power", "global_reactive_power", "voltage", "global_intensity", 
                                       "sub_metering_1", "sub_metering_2", "sub_metering3"))
+#open png
+png(filename="plot1.png", width = 480, height = 480)
 
 # format data / time
 powerData$date <- as.Date(powerData$date, format = "%d/%m/%Y")
@@ -13,3 +15,6 @@ powerData$time <- strptime(powerData$time, format = "%H:%M:%S")
 
 # Global Active Power plot
 hist(powerData$global_active_power, main = "Global Active Power", xlab = "Global Active Power (kilowatts)", ylab = "Frequency", col = "red")
+
+#close png
+dev.off()

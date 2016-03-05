@@ -6,6 +6,8 @@ powerData <- read.table("./household_power_consumption.txt", header = FALSE, nro
                         col.names = c("date", "time", "global_active_power", "global_reactive_power", "voltage", "global_intensity", 
                                       "sub_metering_1", "sub_metering_2", "sub_metering_3"))
 
+#open png
+png(filename="plot3.png", width = 480, height = 480)
 
 # format data / time
 powerData$date <- as.Date(powerData$date, format = "%d/%m/%Y")
@@ -19,4 +21,6 @@ with(powerData, lines(time, sub_metering_3, col = "blue"))
 axis.POSIXct(1, powerData$time, at = labels, format = "%a")
 legend("topright", lty = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
+#close png
+dev.off()
 
